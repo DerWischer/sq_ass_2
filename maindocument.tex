@@ -6,6 +6,7 @@
 \usepackage{listings} % code listings
 \usepackage[font={small, it}]{caption} % adjust caption style
 \usepackage{blindtext}
+\usepackage{cleveref}
 
 \newcommand{\lref}[1]{listing \ref{#1}}% reference code listings more convenient
 
@@ -91,13 +92,22 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Perceived and measured complexity }
 \blindtext
+
 \subsection{Ranking of perceived complexity}
+\label{ssec:ranking}
 % DAVID DAVID DAVID %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % reference a listing -> \lref{method:getAngle} 
 
 \blindtext 
 \subsection{Comparison to measured complexity}
+\label{ssec:comparison}
+This section compares the perceived and measured complexity, and concludes about the quality of the latter one. First of all, the criteria for calculating the complexity are presented and compared to criteria for perceived complexity, which are discussed in \cref{ssec:ranking}. Finally, the quality of the measured complexity is elaborated.
 
+Measured complexity is calculated by an algorithm according to the following criteria. At the beginning the complexity of a method is 1. This value increases by 1 for every conditional statement (i.e. if, else, for, while) and further increases by 1 for additional logical statements of the conditional statements (i.e '\&\&', '||'). Hence, the measured complexity linearly increases with every conditional and logical statement. Defining a reasonable threshold for the measured complexity value limits the amount of branches in a method. In order to not exceed the threshold developers would have to simplify code, or extract parts of the method in subroutines, which may comforts the ease to understand source code.
+
+Human perceived complexity differs greatly from the before presented measured complexity. The algorithm for measuring complexity determines the number of execution paths and results with a value of measured complexity, hence it takes a single aspect into account to express complexity. Unlike this, human perceived complexity is the result of multiple aspects and additionally a subjective decision with no fixed value. It depends on the technical knowledge of the reader and may vary noticeable. When reading method source code, the reader needs to understand what is happening in order to perceive the method as not complex. Vague method or variable names decrease the ease of understanding, too many subroutines require more reading effort, and multiple actions within a method may overload the readers grasping capabilities. Additionally, readers with greater technical or domain knowledge may understand more difficult source code, whereas readers without said knowledge would not capable to understand. 
+
+In conclusion, perceived complexity is more complicated than measured complexity, because it is subjective and takes multiple aspects into account. In contrast to the perceived complexity, the presented measured complexity focuses solely on the total number of executing paths. For that reason, measured complexity is not sufficient enough to represent the actual human perceived complexity. Although, this may not hint that measured complexity is bad, but rather is not sufficient to represent human perception on its own. Thresholds for the complexity value will limit the number of conditional and related logical statements, hence will support the ease of understanding. That being said, additional measures should be taken into account to express the actual complexity, because human perception is not based on one aspect as well. Considering measurements for method coupling and cohesion would support a more accurate statement about actual complexity. Anyhow, aspects like understandable method and variable names as well as technical knowledge are hard to examine for an algorithm. Summarising, applying thresholds for measured complexity may decrease human perceived complexity, though it is most certainly not a guarantor, but rather one aspect of a more difficult subject.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Acknowledgement}
