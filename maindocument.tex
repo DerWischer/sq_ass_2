@@ -27,7 +27,7 @@
 	numberstyle=\tiny\color{black},
 	numbers=left,
 	stepnumber=5,
-	numbersep=0pt,
+	numbersep=5pt,
 	tabsize=2,
 	showstringspaces=true,
 	breaklines,
@@ -88,18 +88,21 @@
 %%%%% DAVID %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-\blindtext
+In this report five projects are analyzed by comparing their internal qualities. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Perceived and measured complexity }
 \blindtext
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Ranking of perceived complexity}
 \label{ssec:ranking}
 % DAVID DAVID DAVID %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% reference a listing -> \lref{method:getAngle} 
+% reference a listing -> \lref{method:getAngle}
 
-\blindtext 
+In this chapter five methods are compared and ranked by their perceived complexity. The perceived complexity for a method is determined by looking at cohesion, coupling, documentation and understandability of method names and variable names. Cohesion is seen as one of the most critical factors since a low cohesion leads to a method that does more than its main task. This makes it harder to understand what a method does since every task, including the main task, needs to be analyzed in order to get a clear view. Coupling is also seen as one of the most critical factors since a tightly coupled method is dependent on other methods. In order to understand what a tightly coupled method does, an analyze of the dependent methods are also needed. Methods with these critical factors will therefore be listed as more complex in the ranking when doing a pairwise comparison. An example of this is the draw method that gets rank one while the getAngle method gets rank five because of the coupling and cohesion factors (see … for more information….). 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Comparison to measured complexity}
 \label{ssec:comparison}
 This section compares the perceived and measured complexity, and concludes about the quality of the latter one. First of all, the criteria for calculating the complexity are presented and compared to criteria for perceived complexity, which are discussed in \cref{ssec:ranking}. Finally, the quality of the measured complexity is elaborated.
@@ -122,24 +125,33 @@ In conclusion, perceived complexity is more complicated than measured complexity
 \section{Code Listings}
 
 \lstinputlisting[float=*, language=Java, 
-caption={
-	The listing shows the sourcecode of the draw-method. Perceived complexity is high, because the method relies on several other methods and global variables. Further, low cohesion and lack of comments additionaly increase the complexity level. The measured complexity for this method is 2.}, 
-label={method:draw}]
+    caption={
+    	The listing shows the source code of the draw-method. Perceived complexity is high, because the method relies on several other methods and global variables. Further, low cohesion and lack of comments additionally increase the human perceived complexity level. The    measured complexity for this method is 2.}, 
+    label={method:draw}]
 {code/method_draw.java}
 
-\lstinputlisting[float=*, language=Java, caption={checkKeyword}, label={method:checkKeyword}]
+\lstinputlisting[float=*, language=Java, 
+    caption={
+        That listing presents the checkKeyword-method source code. The absence of sufficient documentation, vague method and variable names, as well as low cohesion are making the perceived complexity relatively high. The measured complexity value is 6.},
+    label={method:checkKeyword}]
 {code/method_checkKeyword.java}
 
 \lstinputlisting[float=*, language=Java, 
-caption={
-	This code listing contains the intersect-method. It is loosely coupled and the variable names are easy to understand. However, the perceived complexity is increased because cohesion is low, because the method performs two actions at the same time (calculating a minimum and maximum value). The measured complexity for this method is 11.}, 
-label={method:intersect}]
+    caption={
+    	This code listing contains the intersect-method. It is loosely coupled and the variable names are easy to understand. However, the perceived complexity is increased by low cohesion, because the method performs two actions at the same time (calculating a minimum and maximum value). The measured complexity for this method is 11.}, 
+    label={method:intersect}]
 {code/method_intersect.java}
 
-\lstinputlisting[float=*, language=Java, caption={getParameters}, label={method:getParameters}]
+\lstinputlisting[float=*, language=Java, 
+    caption={
+        Here the source code of the getParameters-Method is shown. The method lacks understandable variable names and proper documentation, but due to high cohesion and loose coupling the perceived complexity is relatively low. The measured complexity for this method is 4.}, 
+    label={method:getParameters}]
 {code/method_getParameters.java}
 
-\lstinputlisting[float=*, language=Java, caption={getAngle}, label={method:getAngle}]
+\lstinputlisting[float=*, language=Java, 
+    caption={
+        This listing contains the source code of the getAngle-method. Although it lacks sufficient documentation and meaningful variable names, the high cohesion and low coupling keeps the perceived complexity very low. The measured complexity value is 9.},
+    label={method:getAngle}]
 {code/method_getAngle.java}
 	
 \end{document}
