@@ -1,12 +1,13 @@
 \documentclass[conference]{IEEEtran}
 
-\usepackage{xcolor}
-%Encoding (ermöglicht u.A. ä ö ü)
-\usepackage[utf8]{inputenc}
-% Encoding der Fonts
-\usepackage[T1]{fontenc}
-\usepackage{listings}
+\usepackage{xcolor} % use colors
+\usepackage[utf8]{inputenc} % endoding for i.e. ä, ö and ü
+\usepackage[T1]{fontenc} % font encoding
+\usepackage{listings} % code listings
+\usepackage[font={small, it}]{caption} % adjust caption style
 \usepackage{blindtext}
+
+\newcommand{\lstref}[1]{listing \ref{#1}}% reference code listings more convenient
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Java-Style for code listings
@@ -30,7 +31,11 @@
 	showstringspaces=true,
 	breaklines,
 	frame=trb,
+	captionpos=t,
 }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Other settings for code listings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \lstset{
 	literate=%
 	{Ö}{{\"O}}1
@@ -43,8 +48,11 @@
 	{~}{{\textasciitilde}}1
 }
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document title
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{Assignment 2 - Internal Softare Quality}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Authors
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -64,9 +72,12 @@
 		Email: fodavid@student.chalmers.se
 }}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Start of document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 \maketitle
+\tableofcontents
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
@@ -80,16 +91,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Main part}
 \blindtext
-\lstinputlisting[language=Java, caption={checkKeyword}, label={method:checkKeyword}]
-{code/method_checkKeyword.java}
-\lstinputlisting[language=Java, caption={draw}, label={method:draw}]
-{code/method_draw.java}
-\lstinputlisting[language=Java, caption={getAngle}, label={method:getAngle}]
-{code/method_getAngle.java}
-\lstinputlisting[language=Java, caption={getParameters}, label={method:getParameters}]
-{code/method_getParameters.java}
-\lstinputlisting[language=Java, caption={intersect}, label={method:intersect}]
-{code/method_intersect.java}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Acknowledgment}
@@ -98,5 +99,18 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 \blindtext
+
+\appendix
+\section{Code Listings}
+\lstinputlisting[float=*, language=Java, caption={This method is perceived as complex, because ...}, label={method:draw}]
+{code/method_draw.java}
+\lstinputlisting[float=*, language=Java, caption={checkKeyword}, label={method:checkKeyword}]
+{code/method_checkKeyword.java}
+\lstinputlisting[float=*, language=Java, caption={intersect}, label={method:intersect}]
+{code/method_intersect.java}
+\lstinputlisting[float=*, language=Java, caption={getParameters}, label={method:getParameters}]
+{code/method_getParameters.java}
+\lstinputlisting[float=*, language=Java, caption={getAngle}, label={method:getAngle}]
+{code/method_getAngle.java}
 	
 \end{document}
