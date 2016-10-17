@@ -97,11 +97,10 @@
 
 \blindtext 
 \subsection{Comparison to measured complexity}
-% Joshua Joshua Joshua %%%%%%%%%%
-\blindtext
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Acknowledgment}
+\section{Acknowledgement}
 \blindtext
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -111,13 +110,19 @@
 \appendix
 \section{Code Listings}
 
-\lstinputlisting[float=*, language=Java, caption={This method is perceived as complex, because ...}, label={method:draw}]
+\lstinputlisting[float=*, language=Java, 
+caption={
+	The listing shows the sourcecode of the draw-method. Perceived complexity is high, because the method relies on several other methods and global variables. Further, low cohesion and lack of comments additionaly increase the complexity level. The measured complexity for this method is 2.}, 
+label={method:draw}]
 {code/method_draw.java}
 
 \lstinputlisting[float=*, language=Java, caption={checkKeyword}, label={method:checkKeyword}]
 {code/method_checkKeyword.java}
 
-\lstinputlisting[float=*, language=Java, caption={intersect}, label={method:intersect}]
+\lstinputlisting[float=*, language=Java, 
+caption={
+	This code listing contains the intersect-method. It is loosely coupled and the variable names are easy to understand. However, the perceived complexity is increased because cohesion is low, because the method performs two actions at the same time (calculating a minimum and maximum value). The measured complexity for this method is 11.}, 
+label={method:intersect}]
 {code/method_intersect.java}
 
 \lstinputlisting[float=*, language=Java, caption={getParameters}, label={method:getParameters}]
