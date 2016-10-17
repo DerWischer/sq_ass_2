@@ -31,6 +31,17 @@
 	breaklines,
 	frame=trb,
 }
+\lstset{
+	literate=%
+	{Ö}{{\"O}}1
+	{Ä}{{\"A}}1
+	{Ü}{{\"U}}1
+	{ß}{{\ss}}1
+	{ü}{{\"u}}1
+	{ä}{{\"a}}1
+	{ö}{{\"o}}1
+	{~}{{\textasciitilde}}1
+}
 
 
 \title{Assignment 2 - Internal Softare Quality}
@@ -69,7 +80,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Main part}
 \blindtext
-\lstinputlisting[language=Java]{code/Testfile.java}
+\lstinputlisting[language=Java, caption={checkKeyword}, label={method:checkKeyword}]
+{code/method_checkKeyword.java}
+\lstinputlisting[language=Java, caption={draw}, label={method:draw}]
+{code/method_draw.java}
+\lstinputlisting[language=Java, caption={getAngle}, label={method:getAngle}]
+{code/method_getAngle.java}
+\lstinputlisting[language=Java, caption={getParameters}, label={method:getParameters}]
+{code/method_getParameters.java}
+\lstinputlisting[language=Java, caption={intersect}, label={method:intersect}]
+{code/method_intersect.java}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Acknowledgment}
