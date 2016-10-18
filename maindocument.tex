@@ -133,6 +133,31 @@ In direct comparison of the measured and perceived complexity of the selected me
 In conclusion, perceived complexity is more complicated than measured complexity, because it is subjective and takes multiple aspects into account. In contrast to the perceived complexity, the presented measured complexity focuses solely on the total number of execution paths. For that reason, measured complexity is not sufficient enough to represent the actual human perceived complexity. Although, this may not hint that measured complexity is bad, but rather is not sufficient to represent human perception on its own. Thresholds for the complexity value will limit the number of conditional and related logical statements, hence will support the ease of understanding. That being said, additional measures should be taken into account to express the actual complexity, because human perception is not based on one aspect as well. Considering measurements for method coupling and cohesion would support a more accurate statement about actual complexity. Anyhow, aspects like understandable method and variable names as well as technical knowledge are hard to examine for an algorithm. Summarising, applying thresholds for measured complexity may decrease human perceived complexity, though it is most certainly not a guarantor, but rather one aspect of a more difficult subject.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Internal quality}
+
+\subsection{Measurements metrics and thresholds}
+\begin{table}
+\centering
+    \begin{tabular}{c c}
+         Metric         & Threshold    \\ \hline
+         Maximum depth  & 7             \\
+         Complexity     & 10            \\
+         Method calls   & 20            \\
+    \end{tabular}
+    \caption{This table shows the threshold for the selected metrics}
+    \label{tbl:thresholds}
+\end{table}
+
+\subsection{Analysis of measurement metrics}
+% diagrams
+
+% weight of metric
+
+\subsection{Conclusion}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Acknowledgement}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
