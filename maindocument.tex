@@ -170,7 +170,7 @@ Estimation of internal software quality by using said measurements requires a de
 % diagrams
 
 % Describe exceed depth here.. %%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
-The diagram in \cref{fig:exceed_depth} shows the projects relative depth on method level, which is in this case a percent measure of how many methods that have a nested depth greater than seven. The relative depth is shown on the y-axis for each project and the project names are shown on the x-axis. According to this diagram, the UMLet project is seen as most complex since it   has the highest relative depth value compared to the other projects. This is reasonable because if a lot of methods in a project has a nesting depth that is very large, the methods in that project become difficult to understand, which also leads to difficulty in maintaining that project. The Umlet project has therefore the worst internal quality if only comparing the relative depth. 
+The diagram in \cref{fig:exceed_depth} shows the projects relative depth on method level, which is in this case a percentage measure of how many methods that have a nested depth greater than seven. The relative depth is shown on the y-axis for each project and the project names are shown on the x-axis. According to this diagram, the UMLet project is seen as most complex since it   has the highest relative depth value compared to the other projects. This is reasonable because if a lot of methods in a project has a nesting depth that is very large, the methods in that project become difficult to understand, which also leads to difficulty in maintaining that project. The Umlet project has therefore the worst internal quality if only comparing the relative depth. 
 \begin{figure}
     \includegraphics[width=\columnwidth]{img/rel_exceeded_depth.png}
 \caption{Relative exceeded maximum depth.}
@@ -179,9 +179,7 @@ The diagram in \cref{fig:exceed_depth} shows the projects relative depth on meth
 
 % Describe complexity here.. %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The diagram in \cref{fig:exceed_complexity} shows the projects relative complexity based on method level, which is a percent measure of how many methods that contain more than twenty conditional and logical statements, compared to the total amount of methods. The relative complexity is shown on the y-axis for each project and the project names are shown on the x-axis. By looking at this diagram, the expr project is seen as most complex since it contains highest percentage of conditional and logical statements.  This indicates that the expr project has the worst internal quality, which is reasonable because if there are many conditional and logical statements in the methods, it takes a lot of effort and time to test these methods and assure reliability. 
-
-
+The diagram in \cref{fig:exceed_complexity} shows the projects relative complexity based on method level, which is a percentage measure of how many methods that contain more than twenty conditional and logical statements, compared to the total amount of methods. The relative complexity is shown on the y-axis for each project and the project names are shown on the x-axis. By looking at this diagram, the expr project is seen as most complex since it contains highest percentage of conditional and logical statements.  This indicates that the expr project has the worst internal quality, which is reasonable because if there are many conditional and logical statements in the methods, it takes a lot of effort and time to test these methods and assure reliability. 
 
 \begin{figure}
 	\includegraphics[width=\columnwidth]{img/rel_exceeded_complexity.png}
@@ -189,7 +187,9 @@ The diagram in \cref{fig:exceed_complexity} shows the projects relative complexi
 \label{fig:exceed_complexity}
 \end{figure}
 
-% Describe exceed calls here..%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   work work 
+% Describe exceed calls here..%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
+
+
 \begin{figure}
 	\includegraphics[width=\columnwidth]{img/rel_exceeded_calls.png}
 \caption{Relative exceeded method calls.}
