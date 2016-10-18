@@ -28,7 +28,7 @@
 	numberstyle=\tiny\color{black},
 	numbers=left,
 	stepnumber=5,
-	numbersep=5pt,
+	numbersep=0pt,
 	tabsize=2,
 	showstringspaces=true,
 	breaklines,
@@ -189,6 +189,15 @@ Estimation of internal software quality by using said measurements requires a de
 
 \subsection{Conclusion}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Refactoring}
+Methods that are exceeding defined thresholds of one ore more measurement should be examined carefully. A software engineer analysing a method of insufficient quality has to decide whether refactoring is required or not. In this section the readLinesToTestfile-method, shown in \lref{method:not_refactored}, is refactored in order to decrease the measured complexity. For this section the defined threshold for the measurement is 20 but the method has a complexity of 32, hence this value has to be decreased by refactoring.
+
+Simply said, the aforementioned method is a for loop that iterates over a huge if-else-cascade, and finally return an object. Each of the if- and else-if-blocks are performing several actions on the object that is return at the end. However, some of these blocks additionally nest conditional statements which are making the method less readable, thus less understandable. A straightforward approach to refactor is to extract the nested conditional statements to separate methods, hence the method's readability increases. 
+
+The refactored method is shown in \lref{method:refactored}. The nested statements were extracted in two additional methods, namely the processDescription-method and the processTestlines-method, which increased the readability and understandability. As a result, the complexity value decreased from 32 to 13 and the added methods have a reasonable complexity value of 5 (processDescription) and 9 (processTestlines). 
+
+Investigating the algorithm for calculating complexity the presented refactoring results are not surprising. The complexity value of a method increases for every conditional and logical statement, thus extracting these statements into subroutines results in a lower computed value. However, developers could cheat on the complexity value by considering the algorithm. Carrying this to extremes, extracting the whole code of the method to a subroutine would certainly result in a complexity value of 1, which would indicate good quality, but in practice the complexity has solely shifted into another method. For that reason, methods added during refactoring have to examined carefully to make sure that the complexity actually decreased and not merely shifted from one method to another.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -198,36 +207,47 @@ Estimation of internal software quality by using said measurements requires a de
 \section{Conclusion}
 
 \appendix
-\section{Code Listings}
-
-\lstinputlisting[float=*, language=Java, 
+\section{Selected methods}
+\lstinputlisting[language=Java,
     caption={
     	The listing shows the source code of the draw-method. Perceived complexity is high, because the method relies on several other methods and global variables. Further, low cohesion and lack of comments additionally increase the human perceived complexity level. The    measured complexity for this method is 2.}, 
     label={method:draw}]
 {code/method_draw.java}
 
-\lstinputlisting[float=*, language=Java, 
+\lstinputlisting[language=Java, 
     caption={
         That listing presents the checkKeyword-method source code. The absence of sufficient documentation, vague method and variable names, as well as low cohesion are making the perceived complexity relatively high. The measured complexity value is 6.},
     label={method:checkKeyword}]
 {code/method_checkKeyword.java}
 
-\lstinputlisting[float=*, language=Java, 
+\lstinputlisting[language=Java, 
     caption={
     	This code listing contains the intersect-method. It is loosely coupled and the variable names are easy to understand. However, the perceived complexity is increased by low cohesion, because the method performs two actions at the same time (calculating a minimum and maximum value). The measured complexity for this method is 11.}, 
     label={method:intersect}]
 {code/method_intersect.java}
 
-\lstinputlisting[float=*, language=Java, 
+\lstinputlisting[language=Java, 
     caption={
         Here the source code of the getParameters-Method is shown. The method lacks understandable variable names and proper documentation, but due to high cohesion and loose coupling the perceived complexity is relatively low. The measured complexity for this method is 4.}, 
     label={method:getParameters}]
 {code/method_getParameters.java}
 
-\lstinputlisting[float=*, language=Java, 
+\lstinputlisting[language=Java, 
     caption={
         This listing contains the source code of the getAngle-method. Although it lacks sufficient documentation and meaningful variable names, the high cohesion and low coupling keeps the perceived complexity very low. The measured complexity value is 9.},
     label={method:getAngle}]
 {code/method_getAngle.java}
-	
+
+\section{Code listings of refactored method}
+\lstinputlisting[language=Java,
+	caption={
+		Not refactored},
+	label={method:not_refactored}]
+{code/method_not_refactored.java}	
+
+\lstinputlisting[language=Java,
+caption={
+	Refactored},
+label={method:refactored}]
+{code/method_refactored.java}
 \end{document}
