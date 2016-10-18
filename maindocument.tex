@@ -168,22 +168,32 @@ Estimation of internal software quality by using said measurements requires a de
 
 \subsection{Analysis of measurement metrics}
 % diagrams
+
+% Describe exceed depth here.. %%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
+The diagram in \cref{fig:exceed_depth} shows the projects relative depth on method level, which is in this case a percent measure of how many methods that have a nested depth greater than seven. The relative depth is shown on the y-axis for each project and the project names are shown on the x-axis. According to this diagram, the UMLet project is seen as most complex since it   has the highest relative depth value compared to the other projects. This is reasonable because if a lot of methods in a project has a nesting depth that is very large, the methods in that project become difficult to understand, which also leads to difficulty in maintaining that project. The Umlet project has therefore the worst internal quality if only comparing the relative depth. 
 \begin{figure}
-\includegraphics[width=\columnwidth]{img/rel_exceeded_depth.png}
+    \includegraphics[width=\columnwidth]{img/rel_exceeded_depth.png}
 \caption{Relative exceeded maximum depth.}
 \label{fig:exceed_depth}
 \end{figure}
 
-\begin{figure}
-	\includegraphics[width=\columnwidth]{img/rel_exceeded_complexity.png}
-	\caption{Relative exceeded complexity.}
-	\label{fig:exceed_complexity}
-\end{figure}
+% Describe complexity here.. %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The diagram in \cref{fig:exceed_complexity} shows the projects relative complexity based on method level, which is a percent measure of how many methods that contain more than twenty conditional and logical statements, compared to the total amount of methods. The relative complexity is shown on the y-axis for each project and the project names are shown on the x-axis. By looking at this diagram, the expr project is seen as most complex since it contains highest percentage of conditional and logical statements.  This indicates that the expr project has the worst internal quality, which is reasonable because if there are many conditional and logical statements in the methods, it takes a lot of effort and time to test these methods and assure reliability. 
+
+
 
 \begin{figure}
+	\includegraphics[width=\columnwidth]{img/rel_exceeded_complexity.png}
+\caption{Relative exceeded complexity.}
+\label{fig:exceed_complexity}
+\end{figure}
+
+% Describe exceed calls here..%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   work work 
+\begin{figure}
 	\includegraphics[width=\columnwidth]{img/rel_exceeded_calls.png}
-	\caption{Relative exceeded method calls.}
-	\label{fig:exceed_calls}
+\caption{Relative exceeded method calls.}
+\label{fig:exceed_calls}
 \end{figure}
 % weight of metric
 
@@ -198,7 +208,6 @@ Simply said, the aforementioned method is a for loop that iterates over a huge i
 The refactored method is shown in \lref{method:refactored}. The nested statements were extracted in two additional methods, namely the processDescription-method and the processTestlines-method, which increased the readability and understandability. As a result, the complexity value decreased from 32 to 13 and the added methods have a reasonable complexity value of 5 (processDescription) and 9 (processTestlines). 
 
 Investigating the algorithm for calculating complexity the presented refactoring results are not surprising. The complexity value of a method increases for every conditional and logical statement, thus extracting these statements into subroutines results in a lower computed value. However, developers could cheat on the complexity value by considering the algorithm. Carrying this to extremes, extracting the whole code of the method to a subroutine would certainly result in a complexity value of 1, which would indicate good quality, but in practice the complexity has solely shifted into another method. For that reason, methods added during refactoring have to examined carefully to make sure that the complexity actually decreased and not merely shifted from one method to another.
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Acknowledgement}
