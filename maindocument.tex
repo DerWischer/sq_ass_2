@@ -82,17 +82,16 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-	\blindtext
+    In this paper measured and human perceived complexity of source code is discussed. It outlines how complexity is perceived by humans and compares it to measured complexity. Further, ...
 \end{abstract}
 
 %%%%% DAVID %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-In this report five open source Java projects are compared by using their internal qualities. The five projects are: Amazequest, Umlet, Expr, BscSoftware and uHabits. SourceMonitor was used as an measurment tool for measuring different internal quality factors...... 
+In this report five open source Java projects are compared by using their internal qualities. The five projects are: Amazequest, Umlet, Expr, BscSoftware and uHabits. SourceMonitor was used as an measurment tool for measuring the different internal quality factors. The different comparisons between the internal qualities will be discussed below.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Perceived and measured complexity }
-\blindtext
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Ranking of perceived complexity}
@@ -100,22 +99,25 @@ In this report five open source Java projects are compared by using their intern
 % DAVID DAVID DAVID %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % reference a listing -> \lref{method:getAngle}
 
-In this section five methods are compared and ranked by their perceived complexity, where value one is the highest rank. The perceived complexity for a method is determined by looking at cohesion, coupling, documentation and understandability of method names and variable names. Cohesion is seen as one of the most critical factors since a low cohesion leads to a method that does more than its main task. This makes it harder to understand what a method does since every task, including the main task, needs to be analyzed in order to get a clear view. Coupling is also seen as one of the most critical factors since a tightly coupled method is dependent on other methods. In order to understand what a tightly coupled method does, an analysis of the dependent methods are also needed. Methods with these critical factors will therefore be listed as more complex in the ranking when doing a pairwise comparison. An example of this is the draw method that gets rank one while the getAngle method gets rank five because of the coupling and cohesion factors, . 
+In this section five methods are compared and ranked by their perceived complexity, where value one is the highest rank. The perceived complexity for a method is determined by looking at cohesion, coupling, documentation and understandability of method names and variable names. Cohesion is seen as one of the most critical factors since a low cohesion leads to a method that does more than its main task. This makes it harder to understand what a method does since every task, including the main task, needs to be analyzed in order to get a clear view. Coupling is also seen as one of the most critical factors since a tightly coupled method is dependent on other methods. In order to understand what a tightly coupled method does, an analyze of the dependent methods are also needed. Meanwhile documentation and the understandability of method names and variable names are seen as less critical when determining the perceived complexity for a method. The reason for this is because even if a documentation is well written and all the names are clear in a method, the reader can still struggle to understand what is happening when for example there is low cohesion. Methods with low cohesion and tight coupling will therefore be perceived as more complex when doing a pairwise comparison. An example of this is the draw method that gets rank one while the getAngle method gets rank five because of the differences in coupling and cohesion, see \cref{tbl:ranking}. Even if the variables names are more vague in the getAngle method then the draw method, it is easier to understand what the method does and therefore the draw method gets an higher complexity. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ranking table
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{table}
 \centering
-	\begin{tabular}{c l}
-		Rank 	& Method			\\ \hline 
-		1 		&  draw				\\ 
-		2 		&  checkKeyword		\\ 
-		3 		&  intersect		\\ 
-		4 		&  getParameters	\\ 
-		5 		& getAngle			\\ 
+	\begin{tabular}{c | l l}
+		Rank 	& Measured complexity   & Perceived complexity      \\ \hline 
+		1 		& intersect	            & draw                      \\ 
+		2 		& getAngle       	    & checkKeyword              \\ 
+		3 		& checkKeyword  	    & intersect                 \\ 
+		4 		& getParameters         & getParameters             \\ 
+		5 		& draw 		            & getAngle                  \\ 
 	\end{tabular} 
+\caption{This table shows the ranking of measured and perceived complexity for the selected method. Measured complexity is shown in descending order of the measured complexity value in the second column. The order of perceived complexity is shown in the third column. In both columns rank 1 is the most and rank 5 the least complex.}
 \label{tbl:ranking}
-\caption{This table shows the ranking of human perceived complexity. 1 is the highest and 5 the lowest complexity.}
 \end{table}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Comparison to measured complexity}
@@ -126,15 +128,15 @@ Measured complexity is calculated by an algorithm according to the following cri
 
 Human perceived complexity differs greatly from the before presented measured complexity. The algorithm for measuring complexity determines the number of execution paths and results with a value of measured complexity, hence it takes a single aspect into account to express complexity. Unlike this, human perceived complexity is the result of multiple aspects and additionally a subjective decision with no fixed value. It depends on the technical knowledge of the reader and may vary noticeable. When reading method source code, the reader needs to understand what is happening in order to perceive the method as not complex. Vague method or variable names decrease the ease of understanding, too many subroutines require more reading effort, and multiple actions within a method may overload the readers grasping capabilities. Additionally, readers with greater technical or domain knowledge may understand more difficult source code, whereas readers without said knowledge would not capable to understand. 
 
-In conclusion, perceived complexity is more complicated than measured complexity, because it is subjective and takes multiple aspects into account. In contrast to the perceived complexity, the presented measured complexity focuses solely on the total number of executing paths. For that reason, measured complexity is not sufficient enough to represent the actual human perceived complexity. Although, this may not hint that measured complexity is bad, but rather is not sufficient to represent human perception on its own. Thresholds for the complexity value will limit the number of conditional and related logical statements, hence will support the ease of understanding. That being said, additional measures should be taken into account to express the actual complexity, because human perception is not based on one aspect as well. Considering measurements for method coupling and cohesion would support a more accurate statement about actual complexity. Anyhow, aspects like understandable method and variable names as well as technical knowledge are hard to examine for an algorithm. Summarising, applying thresholds for measured complexity may decrease human perceived complexity, though it is most certainly not a guarantor, but rather one aspect of a more difficult subject.
+In direct comparison of the measured and perceived complexity of the selected methods the differences become more clear. For instance according to \cref{tbl:ranking}, the draw-method is measured as not very complex, although it is perceived as the most complex. In this method the measured complexity is low, because the method contains just a single conditional statement (see line 16 in \lref{method:draw}). However, various method calls, the usage of global variables and performing multiple actions subsequently the method appears complex to humans. Another interesting outcome is the comparison of the getAngle-method. Measuring the complexity of this method by counting the execution paths results in the second biggest measured complexity value. Anyhow, in the ranking of human perceived complexity it is considered the least complex method. The source code shows various conditional statements with multiple logical statements within (see lines 9, 12, 15 and 18 in \lref{method:getAngle}), hence the measured complexity value increases often. But the method is focused on a single task and does not call many subroutines, which makes it easy to understand its purpose and what is happening.
+
+In conclusion, perceived complexity is more complicated than measured complexity, because it is subjective and takes multiple aspects into account. In contrast to the perceived complexity, the presented measured complexity focuses solely on the total number of execution paths. For that reason, measured complexity is not sufficient enough to represent the actual human perceived complexity. Although, this may not hint that measured complexity is bad, but rather is not sufficient to represent human perception on its own. Thresholds for the complexity value will limit the number of conditional and related logical statements, hence will support the ease of understanding. That being said, additional measures should be taken into account to express the actual complexity, because human perception is not based on one aspect as well. Considering measurements for method coupling and cohesion would support a more accurate statement about actual complexity. Anyhow, aspects like understandable method and variable names as well as technical knowledge are hard to examine for an algorithm. Summarising, applying thresholds for measured complexity may decrease human perceived complexity, though it is most certainly not a guarantor, but rather one aspect of a more difficult subject.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Acknowledgement}
-\blindtext
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
-\blindtext
 
 \appendix
 \section{Code Listings}
