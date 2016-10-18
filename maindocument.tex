@@ -135,6 +135,11 @@ In conclusion, perceived complexity is more complicated than measured complexity
 \section{Internal quality}
 
 \subsection{Measurements metrics and thresholds}
+% Metrics: Nested depth, Complexity, Method calls,
+This section introduces the chosen measurements and respective thresholds used to estimate the internal quality of the products. Nested depth, complexity and method calls are the chosen measurements to conclude about the internal quality. The first measurement, namely Nested depth, is the maximum counted number of nested conditional statements within a method. Complexity of a method is expressed by an integer value, that is the higher the more conditional and logical statements the method has. Thereby, the default value is 1 and it increases by 1 for every conditional or logical statements. The last measurement is the number of method calls within the examined method. 
+
+% Thresholds
+Estimation of internal software quality by using said measurements requires a definition of what is good and bad quality. For that reason, every measurement needs a threshold, that when exceeded stand for bad quality. The threshold values for the maximum depth, complexity and method calls are shown in \cref{tbl:thresholds} and are based upon recommendation from literature or experience.
 \begin{table}
 \centering
     \begin{tabular}{c c}
