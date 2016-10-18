@@ -7,6 +7,7 @@
 \usepackage[font={small, it}]{caption} % adjust caption style
 \usepackage{blindtext}
 \usepackage{cleveref}
+\usepackage{graphicx}
 
 \newcommand{\lref}[1]{listing \ref{#1}}% reference code listings more convenient
 
@@ -96,9 +97,7 @@ In this report five open source Java projects are compared by using their intern
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Ranking of perceived complexity}
 \label{ssec:ranking}
-% DAVID DAVID DAVID %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % reference a listing -> \lref{method:getAngle}
-
 In this section five methods are compared and ranked by their perceived complexity, where value one is the highest rank. The perceived complexity for a method is determined by looking at cohesion, coupling, documentation and understandability of method names and variable names. Cohesion is seen as one of the most critical factors since a low cohesion leads to a method that does more than its main task. This makes it harder to understand what a method does since every task, including the main task, needs to be analyzed in order to get a clear view. Coupling is also seen as one of the most critical factors since a tightly coupled method is dependent on other methods. In order to understand what a tightly coupled method does, an analyze of the dependent methods are also needed. Meanwhile documentation and the understandability of method names and variable names are seen as less critical when determining the perceived complexity for a method. The reason for this is because even if a documentation is well written and all the names are clear in a method, the reader can still struggle to understand what is happening when for example there is low cohesion. Methods with low cohesion and tight coupling will therefore be perceived as more complex when doing a pairwise comparison. An example of this is the draw method that gets rank one while the getAngle method gets rank five because of the differences in coupling and cohesion, see \cref{tbl:ranking}. Even if the variables names are more vague in the getAngle method then the draw method, it is easier to understand what the method does and therefore the draw method gets an higher complexity. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -148,9 +147,39 @@ In conclusion, perceived complexity is more complicated than measured complexity
     \label{tbl:thresholds}
 \end{table}
 
+\begin{table*}
+\centering
+\begin{tabular}{l|c c c c c c c}
+	Project     & Depth & Rel. depth & Complexity & Rel. complexity & Calls & Rel. Calls & Number of methods \\ \hline
+	AmazeQuest  &   0   & 0,00       & 0          & 0,00            & 3     & 0,03       & 90                \\
+	BscSoftware &   2   & 0,003      & 3          & 0,01            & 13    & 0,02       & 577               \\
+	Expr        &   0   & 0,00       & 1          & 0,02            & 4     & 0,06       & 64                \\
+	uHabits     &   0   & 0,00       & 4          & 0,00            & 62    & 0,03       & 1888              \\
+	UMLet       &  31   & 0,01       & 18         & 0,01            & 156   & 0,05       & 3408
+\end{tabular} 
+\caption{This table shows the absolute and relative number of methods that exceed the threshold for maximum depth, complexity, or methods calls. The relative value is calculating by the number of methods within the respective project.}
+\label{tbl:exceed}
+\end{table*}
+
 \subsection{Analysis of measurement metrics}
 % diagrams
+\begin{figure}
+\includegraphics[width=\columnwidth]{img/rel_exceeded_depth.png}
+\caption{Relative exceeded maximum depth.}
+\label{fig:exceed_depth}
+\end{figure}
 
+\begin{figure}
+	\includegraphics[width=\columnwidth]{img/rel_exceeded_complexity.png}
+	\caption{Relative exceeded complexity.}
+	\label{fig:exceed_complexity}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=\columnwidth]{img/rel_exceeded_calls.png}
+	\caption{Relative exceeded method calls.}
+	\label{fig:exceed_calls}
+\end{figure}
 % weight of metric
 
 \subsection{Conclusion}
