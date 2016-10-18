@@ -189,6 +189,8 @@ The diagram in \cref{fig:exceed_complexity} shows the projects relative complexi
 
 % Describe exceed calls here..%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
 
+The diagram in ( ) shows the projects relative method calls, which is a percentage measure of how many methods that are calling more than ten methods. The relative calls are shown on the y-axis for each project and the project names are shown on the x-axis. When analyzing the diagram, the Expr project has the highest percentage of method calls and has therefore the worst internal quality when using this threshold. This is understandable since a method that is calling a lot of other methods will be tightly coupled, which makes it harder to understand the method and more difficult to maintain the project. 
+
 
 \begin{figure}
 	\includegraphics[width=\columnwidth]{img/rel_exceeded_calls.png}
