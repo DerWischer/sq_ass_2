@@ -27,7 +27,7 @@
 	morecomment=[s][\color{javadocblue}]{/**}{*/},
 	numberstyle=\tiny\color{black},
 	numbers=left,
-	stepnumber=5,
+	stepnumber=1,
 	numbersep=0pt,
 	tabsize=2,
 	showstringspaces=true,
@@ -79,26 +79,30 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 \maketitle
-\tableofcontents
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-    In this paper measured and human perceived complexity of source code is discussed. It outlines how complexity is perceived by humans and compares it to measured complexity. Further, ...
-\end{abstract}
+    In this paper measured and human perceived complexity of source code is discussed. It outlines how complexity is perceived by humans and compares it to measured complexity. Several measurement metric are selected and weighted in order to conclude about the internal quality of software projects. Further, an example of refactoring is presented.
+\end{abstract} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tableofcontents
+\listoffigures
+\lstlistoflistings
 
 %%%%% DAVID %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-In this report five open source Java projects are compared by using their internal qualities. The five projects are: Amazequest, Umlet, Expr, BscSoftware and uHabits. SourceMonitor was used as an measurment tool for measuring the different internal quality factors. The different comparisons between the internal qualities will be discussed below.  
+In this report five open source Java projects are compared by using their internal qualities. The five projects are: Amazequest, Umlet, Expr, BscSoftware and uHabits. SourceMonitor was used as an measurment tool for measuring the different internal quality factors. In \cref{sec:perceived and measured} five methods are selected and the perceived and measured complexity are compared. Following, in \cref{sec:internal quality} the internal quality of the selected projects are examined and the project with the worst internal quality is identified. Finally, a method of high complexity is selected and refactored in order to reduce the measured complexity value to a reasonable number.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Perceived and measured complexity }
-
+\label{sec:perceived and measured}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Ranking of perceived complexity}
 \label{ssec:ranking}
 % reference a listing -> \lref{method:getAngle}
-In this section five methods are compared and ranked by their perceived complexity, where value one is the highest rank. The perceived complexity for a method is determined by looking at cohesion, coupling, documentation and understandability of method names and variable names. Cohesion is seen as one of the most critical factors since a low cohesion leads to a method that does more than its main task. This makes it harder to understand what a method does since every task, including the main task, needs to be analyzed in order to get a clear view. Coupling is also seen as one of the most critical factors since a tightly coupled method is dependent on other methods. In order to understand what a tightly coupled method does, an analyze of the dependent methods are also needed. Meanwhile documentation and the understandability of method names and variable names are seen as less critical when determining the perceived complexity for a method. The reason for this is because even if a documentation is well written and all the names are clear in a method, the reader can still struggle to understand what is happening when for example there is low cohesion. Methods with low cohesion and tight coupling will therefore be perceived as more complex when doing a pairwise comparison. An example of this is the draw method that gets rank one while the getAngle method gets rank five because of the differences in coupling and cohesion, see \cref{tbl:ranking}. Even if the variables names are more vague in the getAngle method then the draw method, it is easier to understand what the method does and therefore the draw method gets an higher complexity. 
+In this section five methods are compared and ranked by their perceived complexity, where value one is the highest rank. The perceived complexity for a method is determined by looking at cohesion, coupling, documentation and understandability of method names and variable names. Cohesion is seen as one of the most critical factors since a low cohesion leads to a method that does more than its main task. This makes it harder to understand what a method does since every task, including the main task, needs to be analyzed in order to get a clear view. Coupling is also seen as one of the most critical factors since a tightly coupled method is dependent on other methods. In order to understand what a tightly coupled method does, an analyze of the dependent methods are also needed. Meanwhile documentation and the understandability of method names and variable names are seen as less critical when determining the perceived complexity for a method. The reason for this is because even if a documentation is well written and all the names are clear in a method, the reader can still struggle to understand what is happening for example when there is low cohesion. Methods with low cohesion and tight coupling will therefore be perceived as more complex when doing a pairwise comparison. An example of this is the draw method that gets rank one while the getAngle method gets rank five because of the differences in coupling and cohesion, see \cref{tbl:ranking}. Even if the variables names are more vague in the getAngle method then the draw method, it is easier to understand what the method does and therefore the draw method gets an higher perceived complexity. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Ranking table
@@ -125,14 +129,15 @@ This section compares the perceived and measured complexity, and concludes about
 
 Measured complexity is calculated by an algorithm according to the following criteria. At the beginning the complexity of a method is 1. This value increases by 1 for every conditional statement (i.e. if, else, for, while) and further increases by 1 for additional logical statements of the conditional statements (i.e '\&\&', '||'). Hence, the measured complexity linearly increases with every conditional and logical statement. Defining a reasonable threshold for the measured complexity value limits the amount of branches in a method. In order to not exceed the threshold developers would have to simplify code, or extract parts of the method in subroutines, which may comforts the ease to understand source code.
 
-Human perceived complexity differs greatly from the before presented measured complexity. The algorithm for measuring complexity determines the number of execution paths and results with a value of measured complexity, hence it takes a single aspect into account to express complexity. Unlike this, human perceived complexity is the result of multiple aspects and additionally a subjective decision with no fixed value. It depends on the technical knowledge of the reader and may vary noticeable. When reading method source code, the reader needs to understand what is happening in order to perceive the method as not complex. Vague method or variable names decrease the ease of understanding, too many subroutines require more reading effort, and multiple actions within a method may overload the readers grasping capabilities. Additionally, readers with greater technical or domain knowledge may understand more difficult source code, whereas readers without said knowledge would not capable to understand. 
+Human perceived complexity differs greatly from the measured complexity. The algorithm for measuring complexity determines the number of execution paths and results with a value of measured complexity, hence it takes a single aspect into account to express complexity. Unlike this, human perceived complexity is the result of multiple aspects and additionally a subjective decision with no fixed value. It depends on the technical knowledge of the reader and therefore may vary. When reading method source code, the reader needs to understand what is happening in order to perceive the method as not complex. Vague method or variable names decrease the ease of understanding, too many subroutines require more reading effort, and multiple actions within a method may overload the readers grasping capabilities. Additionally, readers with greater technical or domain knowledge may understand more difficult source code, whereas readers with less knowledge would have difficulty to understand. 
 
-In direct comparison of the measured and perceived complexity of the selected methods the differences become more clear. For instance according to \cref{tbl:ranking}, the draw-method is measured as not very complex, although it is perceived as the most complex. In this method the measured complexity is low, because the method contains just a single conditional statement (see line 16 in \lref{method:draw}). However, various method calls, the usage of global variables and performing multiple actions subsequently the method appears complex to humans. Another interesting outcome is the comparison of the getAngle-method. Measuring the complexity of this method by counting the execution paths results in the second biggest measured complexity value. Anyhow, in the ranking of human perceived complexity it is considered the least complex method. The source code shows various conditional statements with multiple logical statements within (see lines 9, 12, 15 and 18 in \lref{method:getAngle}), hence the measured complexity value increases often. But the method is focused on a single task and does not call many subroutines, which makes it easy to understand its purpose and what is happening.
+In direct comparison of the measured and perceived complexity of the selected methods the differences become more clear. For instance according to \cref{tbl:ranking}, the draw-method is measured as not very complex, although it is perceived as the most complex. In this method the measured complexity is low, because the method contains just a single conditional statement (see line 16 in \lref{method:draw}). However, various method calls, the usage of global variables and the method performing multiple actions subsequently appears complex to humans. Another interesting outcome is the comparison of the getAngle-method. Measuring the complexity of this method by counting the execution paths results in the second biggest measured complexity value. Anyhow, in the ranking of human perceived complexity it is considered the least complex method. The source code shows various conditional statements with multiple logical statements within (see lines 9, 12, 15 and 18 in \lref{method:getAngle}), hence the measured complexity value increases often. But the method is focused on a single task and does not call many subroutines, which makes it easy to understand its purpose and what is happening.
 
 In conclusion, perceived complexity is more complicated than measured complexity, because it is subjective and takes multiple aspects into account. In contrast to the perceived complexity, the presented measured complexity focuses solely on the total number of execution paths. For that reason, measured complexity is not sufficient enough to represent the actual human perceived complexity. Although, this may not hint that measured complexity is bad, but rather is not sufficient to represent human perception on its own. Thresholds for the complexity value will limit the number of conditional and related logical statements, hence will support the ease of understanding. That being said, additional measures should be taken into account to express the actual complexity, because human perception is not based on one aspect as well. Considering measurements for method coupling and cohesion would support a more accurate statement about actual complexity. Anyhow, aspects like understandable method and variable names as well as technical knowledge are hard to examine for an algorithm. Summarising, applying thresholds for measured complexity may decrease human perceived complexity, though it is most certainly not a guarantor, but rather one aspect of a more difficult subject.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Internal quality}
+\label{sec:internal quality}
 
 \subsection{Measurements metrics and thresholds}
 % Metrics: Nested depth, Complexity, Method calls,
@@ -167,9 +172,7 @@ Estimation of internal software quality by using said measurements requires a de
 \end{table*}
 
 \subsection{Analysis of measurement metrics}
-% diagrams
-
-% Describe exceed depth here.. %%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
+\label{ssec:analysis}
 The diagram in \cref{fig:exceed_depth} shows the projects relative depth on method level, which is in this case a percentage measure of how many methods that have a nested depth greater than seven. The relative depth is shown on the y-axis for each project and the project names are shown on the x-axis. According to this diagram, the UMLet project is seen as most complex since it   has the highest relative depth value compared to the other projects. This is reasonable because if a lot of methods in a project has a nesting depth that is very large, the methods in that project become difficult to understand, which also leads to difficulty in maintaining that project. The Umlet project has therefore the worst internal quality if only comparing the relative depth. 
 \begin{figure}
     \includegraphics[width=\columnwidth]{img/rel_exceeded_depth.png}
@@ -177,21 +180,14 @@ The diagram in \cref{fig:exceed_depth} shows the projects relative depth on meth
 \label{fig:exceed_depth}
 \end{figure}
 
-% Describe complexity here.. %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 The diagram in \cref{fig:exceed_complexity} shows the projects relative complexity based on method level, which is a percentage measure of how many methods that contain more than twenty conditional and logical statements, compared to the total amount of methods. The relative complexity is shown on the y-axis for each project and the project names are shown on the x-axis. By looking at this diagram, the UMLet project is seen as most complex since it contains highest percentage of conditional and logical statements.  This indicates that the UMLet project has the worst internal quality, which is reasonable because if there are many conditional and logical statements in the methods, it takes a lot of effort and time to test these methods and assure reliability. 
-
 \begin{figure}
 	\includegraphics[width=\columnwidth]{img/rel_exceeded_complexity.png}
 \caption{Relative exceeded complexity.}
 \label{fig:exceed_complexity}
 \end{figure}
 
-% Describe exceed calls here..%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
-
 The diagram in \cref{fig:exceed_calls} shows the projects relative method calls, which is a percentage measure of how many methods that are calling more than ten methods. The relative calls are shown on the y-axis for each project and the project names are shown on the x-axis. When analyzing the diagram, the Expr project has the highest percentage of method calls and has therefore the worst internal quality when using this threshold. This is understandable since a method that is calling a lot of other methods will be tightly coupled, which makes it harder to understand the method and more difficult to maintain the project. 
-
-
 \begin{figure}
 	\includegraphics[width=\columnwidth]{img/rel_exceeded_calls.png}
 \caption{Relative exceeded method calls.}
@@ -199,65 +195,84 @@ The diagram in \cref{fig:exceed_calls} shows the projects relative method calls,
 \end{figure}
 % weight of metric
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Applying the measurement metric}
+\label{ssec:applying}
+As discussed in \cref{ssec:analysis} considering multiple factors of internal quality can lead to different results. A product may be of high quality according to one factor, but could be of bad quality according to another factor. In order to come to a result of what project has the worst quality the factors have to be weighted. Factors of high weight are supposed to have greater impact on the internal quality than factors of low weight. 
+
+The result of \cref{ssec:comparison} is that tight coupling and low cohesion of methods increase the perceived human complexity. Nested depth and the number of conditional statements (measured complexity) have a smaller impact on the internal quality. Cohesion is not considered by the selected factors thus cannot be taken into account, but the degree of coupling is indicated by the number of called methods. That being said, the relative number of methods that exceed the method call threshold is perceived as the most important factor, hence will have the biggest impact on internal quality. The remaining factors, nested depth and measure complexity, are perceived as equally important.
+
+The aforementioned weights of measurements have to be considered when concluding about the project with the worst internal quality. In the first measurement, see \cref{fig:exceed_depth}, UMLet is the worst project followed with a big gap by BscSoftware. Other projects do not exceed the defined thresholds at all, hence have good quality according to this factor. Considering \cref{fig:exceed_complexity} UMLet is again the worst, and closely behind BscSoftware follows. The project uHabits is also shown, but far away from the top candidates and AmazeQuest and Expr do not show up again. In the last measurement, see \cref{fig:exceed_calls} all projects have exceeded the specified threshold. This time Expr is the worst, followed by UMLet and then Amazequest, uHabits and finally BscSoftware. Overall, UMLet is a top candidate in two measures, and the second worst in the third measure. Since the relative number of methods that exceed the threshold for method calls is perceived as the most important Expr and UMLet are possible candidates for the worst quality. However, the Expr project shows good quality in all other factors, whereas UMLet shows bad quality in the other two factors as well as in the most important one. For these reason, UMLet is considered the project with the worst quality among the five projects.
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Conclusion}
+% perhaps quality is not bad, but it is just the worst among the 5 projects
+After comparing the five different projects by these three thresholds, the UMLet project and the Expr project is seen as the top two projects with the worst internal quality. 
+
+The final conclusion we get after analyzing the three thresholds in each diagram is that the UMLet project has the worst internal quality. The reason for this is because the UMLet project has the highest relative nested depth value, the highest relative complexity value and a high relative call value. Even if the Expr project has a larger relative call value that weighs more than the other thresholds, the UMLet project still has the worst quality. This has to with the UMLet projects relative call value which is indeed less than the Expr projects value but still indicates a large value for tight coupling. Also the difference between these projects when comparing only this threshold is not that significant and therefore the UMLet project still has bad quality on this threshold measure. Therefore when comparing the Expr project and the UMLet project with the other two thresholds, the UMLet project is the project that has the worst quality. 
+
+However, comparing five projects of different domains may be not optimal, because one project domain may require more complex solutions than another. For that reason, comparing the projects to each other may not be convincing. Further, the project with the worst internal quality may not be of bad quality. The comparison solely shows, that the UMLet project has the worst among the other project, but it is not possible to conclude overall bad quality by this approach. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Refactoring}
 Methods that are exceeding defined thresholds of one ore more measurement should be examined carefully. A software engineer analysing a method of insufficient quality has to decide whether refactoring is required or not. In this section the readLinesToTestfile-method, shown in \lref{method:not_refactored}, is refactored in order to decrease the measured complexity. For this section the defined threshold for the measurement is 20 but the method has a complexity of 32, hence this value has to be decreased by refactoring.
 
-Simply said, the aforementioned method is a for loop that iterates over a huge if-else-cascade, and finally return an object. Each of the if- and else-if-blocks are performing several actions on the object that is return at the end. However, some of these blocks additionally nest conditional statements which are making the method less readable, thus less understandable. A straightforward approach to refactor is to extract the nested conditional statements to separate methods, hence the method's readability increases. 
+Simply said, the aforementioned method is a for loop that iterates over a huge if-else-cascade, and finally return an object. Each of the if- and else-if-blocks are performing several actions on the object that is return at the end. However, some of these blocks additionally nest conditional statements which are making the method less readable, thus less understandable. A straightforward approach to refactor is to extract the nested conditional statements (see lines 23, 44, 55 and 66) to separate methods, hence the method's readability increases. 
 
 The refactored method is shown in \lref{method:refactored}. The nested statements were extracted in two additional methods, namely the processDescription-method and the processTestlines-method, which increased the readability and understandability. As a result, the complexity value decreased from 32 to 13 and the added methods have a reasonable complexity value of 5 (processDescription) and 9 (processTestlines). 
 
-Investigating the algorithm for calculating complexity the presented refactoring results are not surprising. The complexity value of a method increases for every conditional and logical statement, thus extracting these statements into subroutines results in a lower computed value. However, developers could cheat on the complexity value by considering the algorithm. Carrying this to extremes, extracting the whole code of the method to a subroutine would certainly result in a complexity value of 1, which would indicate good quality, but in practice the complexity has solely shifted into another method. For that reason, methods added during refactoring have to examined carefully to make sure that the complexity actually decreased and not merely shifted from one method to another.
+Investigating the algorithm for calculating complexity the presented refactoring results are not surprising. The complexity value of a method increases for every conditional and logical statement, thus extracting these statements into subroutines results in a lower computed value. However, developers could cheat on the complexity value by considering the algorithm. Carrying this to extremes, extracting the whole code of the method to a subroutine would certainly result in a complexity value of 1, which would indicate good quality, but in practice the complexity has solely shifted into another method. For that reason, methods added during refactoring have to be examined carefully to make sure that the complexity actually decreased and not merely shifted from one method to another.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Acknowledgement}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusion}
+This paper was created by David Fogelberg and Joshua
+Jungen. It reflects the views of both authors and both authors contributed equally.
 
 \appendix
 \section{Selected methods}
 \lstinputlisting[language=Java,
-    caption={
+    caption={[Method: draw]
     	The listing shows the source code of the draw-method. Perceived complexity is high, because the method relies on several other methods and global variables. Further, low cohesion and lack of comments additionally increase the human perceived complexity level. The    measured complexity for this method is 2.}, 
     label={method:draw}]
 {code/method_draw.java}
 
 \lstinputlisting[language=Java, 
-    caption={
+    caption={[Method: checkKeyword]
         That listing presents the checkKeyword-method source code. The absence of sufficient documentation, vague method and variable names, as well as low cohesion are making the perceived complexity relatively high. The measured complexity value is 6.},
     label={method:checkKeyword}]
 {code/method_checkKeyword.java}
 
 \lstinputlisting[language=Java, 
-    caption={
+    caption={[Method: intersect]
     	This code listing contains the intersect-method. It is loosely coupled and the variable names are easy to understand. However, the perceived complexity is increased by low cohesion, because the method performs two actions at the same time (calculating a minimum and maximum value). The measured complexity for this method is 11.}, 
     label={method:intersect}]
 {code/method_intersect.java}
 
 \lstinputlisting[language=Java, 
-    caption={
+    caption={[Method: getParameters]
         Here the source code of the getParameters-Method is shown. The method lacks understandable variable names and proper documentation, but due to high cohesion and loose coupling the perceived complexity is relatively low. The measured complexity for this method is 4.}, 
     label={method:getParameters}]
 {code/method_getParameters.java}
 
 \lstinputlisting[language=Java, 
-    caption={
+    caption={[Method: getAngle]
         This listing contains the source code of the getAngle-method. Although it lacks sufficient documentation and meaningful variable names, the high cohesion and low coupling keeps the perceived complexity very low. The measured complexity value is 9.},
     label={method:getAngle}]
 {code/method_getAngle.java}
 
 \section{Code listings of refactored method}
 \lstinputlisting[language=Java,
-	caption={
+	caption={[Not refactored method]
 		Not refactored},
 	label={method:not_refactored}]
 {code/method_not_refactored.java}	
 
 \lstinputlisting[language=Java,
-caption={
+caption={[Refactored method]
 	Refactored},
 label={method:refactored}]
 {code/method_refactored.java}
